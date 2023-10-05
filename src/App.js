@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
-function App() {
+const url =
+  "https://corsproxy.io/?" +
+  encodeURIComponent("https://api.prolook.com/api/colors/prolook");
+
+export default function App() {
+  const [colorData, setColorData] = useState(null);
+
+  async function getData() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setColorData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(colorData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <ColorList />
+    </main>
   );
 }
 
-export default App;
+function ColorList() {
+  return (
+    <div>
+      <h1>dfdfa</h1>
+    </div>
+  );
+}
