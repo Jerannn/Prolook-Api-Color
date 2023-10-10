@@ -9,10 +9,10 @@ export default function ColorList({
     <div className="left-side">
       <h1>Colors: </h1>
       <div className="colors">
-        {onColorData.colors.map((color) => {
+        {onColorData.map((color) => {
           return (
             <Color
-              data={color}
+              color={color}
               key={color.name}
               onSelectedPreview={onSelectedPreview}
               onSelectedData={onSelectedData}

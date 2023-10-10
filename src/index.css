@@ -97,6 +97,15 @@ span {
     flex-direction: column;
     min-width: 400px;
   }
+  .left-side {
+    height: 70dvh;
+  }
+  .colors {
+    border: 1px solid #7c7c7e;
+    border-radius: 4px;
+    height: 65dvh;
+    overflow: scroll;
+  }
 }
 
 @media only screen and (max-width: 430px) {

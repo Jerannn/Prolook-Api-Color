@@ -9,15 +9,13 @@ const url =
 export default function App() {
   const [colorData, setColorData] = useState(null);
   const [colorSelected, setColorSelected] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   // this function will fetch the data from this api https://api.prolook.com/api/colors/prolook
   async function getData() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setColorData(data);
-      console.log(data);
+      setColorData(data.colors);
     } catch (error) {
       console.log(error);
     }
@@ -25,8 +23,8 @@ export default function App() {
 
   // This function will handle the click event and show the filter data on the screen.
   function handlePreview(color) {
+    // color =  {id: 1, name: 'Black', color_code: 'B', hex_code: '0e0e0e'}
     setColorSelected((cur) => (cur?.id === color.id ? null : color));
-    setIsOpen(true);
   }
 
   useEffect(() => {
@@ -34,7 +32,6 @@ export default function App() {
     document.title = "Prolook Api Color";
   }, []);
 
-  console.log(colorData && colorData.colors);
   return (
     <main>
       {colorData && (
@@ -44,9 +41,7 @@ export default function App() {
           onSelectedPreview={handlePreview}
         />
       )}
-      {colorSelected && isOpen && (
-        <DisplayColor onSelectedData={colorSelected} onIsOpen={isOpen} />
-      )}
+      {colorSelected && <DisplayColor onSelectedData={colorSelected} />}
     </main>
   );
 }

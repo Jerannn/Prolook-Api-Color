@@ -1,4 +1,4 @@
-export default function DisplayColor({ onSelectedData, onIsOpen }) {
+export default function DisplayColor({ onSelectedData }) {
   let isVisible = false;
   const color = "#000";
   if (
@@ -15,18 +15,15 @@ export default function DisplayColor({ onSelectedData, onIsOpen }) {
   return (
     <div
       className="right-side"
-      style={
-        onIsOpen
-          ? {
-              background: `#${onSelectedData.hex_code}`,
-              color: isVisible ? color : "#FFEFD5",
-            }
-          : ""
-      }
+      style={{
+        background: `#${onSelectedData.hex_code}`,
+        color: isVisible ? color : "#FFEFD5",
+      }}
     >
+      {/* color =  {id: 1, name: 'Black', color_code: 'B', hex_code: '0e0e0e'} */}
       <span>Name: {onSelectedData.name}</span>
       <span>Hex: #{onSelectedData.hex_code}</span>
-      <span>Code Code: {onSelectedData.color_code}</span>
+      <span>Color Code: {onSelectedData.color_code}</span>
     </div>
   );
 }
